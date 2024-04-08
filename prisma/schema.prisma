@@ -8,6 +8,14 @@ datasource db {
 }
 
 //Schemas
+model Admin {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String   @unique
+  hashedPassword String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
 model Student {
   id        String          @id @default(auto()) @map("_id") @db.ObjectId
   name      String
@@ -30,34 +38,32 @@ model Class {
 
 // Junction table between Student and Class
 model ClassToStudent {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  student    Student @relation(fields: [studentReg], references: [regNumber])
-  studentReg String  @unique
-
-  class     Class            @relation(fields: [className], references: [name])
-  className AvailableClasses
+  id         String           @id @default(auto()) @map("_id") @db.ObjectId
+  student    Student          @relation(fields: [studentReg], references: [regNumber])
+  studentReg String           @unique
+  class      Class            @relation(fields: [className], references: [name])
+  className  AvailableClasses
 }
 
 // Junction table between Class and Exam
 model ClassToExam {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-
+  id        String           @id @default(auto()) @map("_id") @db.ObjectId
   class     Class            @relation(fields: [className], references: [name])
   className AvailableClasses
-
-  exam   Exam   @relation(fields: [examId], references: [examId])
-  examId String
+  exam      Exam             @relation(fields: [examId], references: [examId])
+  examId    String
 }
 
 // Teacher model
 model Teacher {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String   @unique
-  exams     Exam[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String   @unique
+  exams          Exam[]
+  hashedPassword String
+  suspended      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 // Exam model
@@ -67,6 +73,7 @@ model Exam {
   examId        String        @unique
   duration      Int
   noOfQuestions Int
+  score         Int
   classes       ClassToExam[]
   teacher       Teacher       @relation(fields: [teacherEmail], references: [email])
   teacherEmail  String
