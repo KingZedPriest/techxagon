@@ -1,14 +1,116 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+//Schemas
+model Student {
+  id        String          @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  regNumber String          @unique
+  deleted   Boolean         @default(false)
+  class     ClassToStudent?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+// Class model
+model Class {
+  id        String           @id @default(auto()) @map("_id") @db.ObjectId
+  name      AvailableClasses @unique
+  students  ClassToStudent[]
+  exams     ClassToExam[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+// Junction table between Student and Class
+model ClassToStudent {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  student    Student @relation(fields: [studentReg], references: [regNumber])
+  studentReg String  @unique
+
+  class     Class            @relation(fields: [className], references: [name])
+  className AvailableClasses
+}
+
+// Junction table between Class and Exam
+model ClassToExam {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  class     Class            @relation(fields: [className], references: [name])
+  className AvailableClasses
+
+  exam   Exam   @relation(fields: [examId], references: [examId])
+  examId String
+}
+
+// Teacher model
+model Teacher {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  exams     Exam[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Exam model
+model Exam {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  examId        String        @unique
+  duration      Int
+  noOfQuestions Int
+  classes       ClassToExam[]
+  teacher       Teacher       @relation(fields: [teacherEmail], references: [email])
+  teacherEmail  String
+  questions     Question[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+// Question model
+model Question {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  question      String
+  options       String[]
+  correctOption String
+  exam          Exam?    @relation(fields: [examId], references: [examId])
+  examId        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+//Enums
+enum AvailableClasses {
+  JSS1A
+  JSS1B
+  JSS1C
+  JSS1D
+  JSS2A
+  JSS2B
+  JSS2C
+  JSS2D
+  JSS3A
+  JSS3B
+  JSS3C
+  JSS3D
+  SS1A
+  SS1B
+  SS1C
+  SS1D
+  SS2A
+  SS2B
+  SS2C
+  SS2D
+  SS3A
+  SS3B
+  SS3C
+  SS3D
 }
