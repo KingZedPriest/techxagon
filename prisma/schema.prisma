@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//Schemas
+// Schemas
 model Admin {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   email          String   @unique
@@ -16,12 +16,28 @@ model Admin {
   updatedAt      DateTime @updatedAt
 }
 
+model School {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String    @unique
+  schoolLogo String?
+  location   String?
+  motto      String?
+  teachers   Teacher[]
+  students   Student[]
+  exams      Exam[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
 model Student {
   id        String          @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   regNumber String          @unique
   deleted   Boolean         @default(false)
   class     ClassToStudent?
+  exams     Exam[]
+  school    School?         @relation(fields: [schoolId], references: [id])
+  schoolId  String?         @db.ObjectId
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
 }
@@ -62,6 +78,8 @@ model Teacher {
   exams          Exam[]
   hashedPassword String
   suspended      Boolean  @default(false)
+  school         School?  @relation(fields: [schoolId], references: [id])
+  schoolId       String?  @db.ObjectId
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
@@ -74,10 +92,15 @@ model Exam {
   duration      Int
   noOfQuestions Int
   score         Int
+  isTaken       Boolean       @default(false)
   classes       ClassToExam[]
   teacher       Teacher       @relation(fields: [teacherEmail], references: [email])
   teacherEmail  String
   questions     Question[]
+  school        School?       @relation(fields: [schoolId], references: [id])
+  schoolId      String?       @db.ObjectId
+  Student       Student?      @relation(fields: [studentId], references: [id])
+  studentId     String?       @db.ObjectId
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }
