@@ -81,7 +81,7 @@ model Teacher {
   hashedPassword String
   suspended      Boolean  @default(false)
   deleted        Boolean  @default(false)
-  school         School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  school         School?  @relation(fields: [schoolId], references: [id], onDelete: Restrict)
   schoolId       String?  @db.ObjectId
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -100,9 +100,9 @@ model Exam {
   teacher       Teacher       @relation(fields: [teacherEmail], references: [email], onDelete: Cascade)
   teacherEmail  String
   questions     Question[]
-  school        School?       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  school        School?       @relation(fields: [schoolId], references: [id])
   schoolId      String?       @db.ObjectId
-  Student       Student?      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  student       Student?      @relation(fields: [studentId], references: [id])
   studentId     String?       @db.ObjectId
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -120,7 +120,7 @@ model Question {
   updatedAt     DateTime @updatedAt
 }
 
-//Enums
+// Enums
 enum AvailableClasses {
   JSS1A
   JSS1B
