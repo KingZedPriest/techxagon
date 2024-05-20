@@ -35,6 +35,7 @@ model Student {
   name      String
   regNumber String          @unique
   deleted   Boolean         @default(false)
+  suspended Boolean         @default(false)
   class     ClassToStudent?
   exams     Exam[]
   school    School?         @relation(fields: [schoolId], references: [id], onDelete: Cascade)
