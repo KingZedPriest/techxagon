@@ -37,7 +37,7 @@ model Student {
   deleted   Boolean         @default(false)
   class     ClassToStudent?
   exams     Exam[]
-  school    School?         @relation(fields: [schoolId], references: [id])
+  school    School?         @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId  String?         @db.ObjectId
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
@@ -56,18 +56,18 @@ model Class {
 // Junction table between Student and Class
 model ClassToStudent {
   id         String           @id @default(auto()) @map("_id") @db.ObjectId
-  student    Student          @relation(fields: [studentReg], references: [regNumber])
+  student    Student          @relation(fields: [studentReg], references: [regNumber], onDelete: Cascade)
   studentReg String           @unique
-  class      Class            @relation(fields: [className], references: [name])
+  class      Class            @relation(fields: [className], references: [name], onDelete: Cascade)
   className  AvailableClasses
 }
 
 // Junction table between Class and Exam
 model ClassToExam {
   id        String           @id @default(auto()) @map("_id") @db.ObjectId
-  class     Class            @relation(fields: [className], references: [name])
+  class     Class            @relation(fields: [className], references: [name], onDelete: Cascade)
   className AvailableClasses
-  exam      Exam             @relation(fields: [examId], references: [examId])
+  exam      Exam             @relation(fields: [examId], references: [examId], onDelete: Cascade)
   examId    String
 }
 
@@ -79,7 +79,8 @@ model Teacher {
   exams          Exam[]
   hashedPassword String
   suspended      Boolean  @default(false)
-  school         School?  @relation(fields: [schoolId], references: [id])
+  deleted        Boolean  @default(false)
+  school         School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId       String?  @db.ObjectId
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
@@ -95,12 +96,12 @@ model Exam {
   score         Int
   isTaken       Boolean       @default(false)
   classes       ClassToExam[]
-  teacher       Teacher       @relation(fields: [teacherEmail], references: [email])
+  teacher       Teacher       @relation(fields: [teacherEmail], references: [email], onDelete: Cascade)
   teacherEmail  String
   questions     Question[]
-  school        School?       @relation(fields: [schoolId], references: [id])
+  school        School?       @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId      String?       @db.ObjectId
-  Student       Student?      @relation(fields: [studentId], references: [id])
+  Student       Student?      @relation(fields: [studentId], references: [id], onDelete: Cascade)
   studentId     String?       @db.ObjectId
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -112,7 +113,7 @@ model Question {
   question      String
   options       String[]
   correctOption String
-  exam          Exam?    @relation(fields: [examId], references: [examId])
+  exam          Exam?    @relation(fields: [examId], references: [examId], onDelete: Cascade)
   examId        String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
