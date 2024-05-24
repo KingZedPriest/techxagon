@@ -74,3 +74,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.orangeGradient {
+  background: rgb(88,23,4);
+  background: -moz-radial-gradient(circle, rgba(88,23,4,1) 0%, rgba(226,88,16,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(88,23,4,1) 0%, rgba(226,88,16,1) 100%);
+  background: radial-gradient(circle, rgba(88,23,4,1) 0%, rgba(226,88,16,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#581704",endColorstr="#e25810",GradientType=1);
+}
