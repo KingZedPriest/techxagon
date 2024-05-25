@@ -5,7 +5,7 @@ export type InputProps = {
     placeholder: string;
     label?: string;
     id: string;
-    value: string | number | any;
+    value?: string | number | any;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     pattern?: string,
     title?: string,
