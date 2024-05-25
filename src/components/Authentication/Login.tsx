@@ -1,3 +1,5 @@
+"use client"
+
 //Import Needed Components
 import Input from "@/components/ui/Input";
 
