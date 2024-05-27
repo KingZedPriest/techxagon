@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+//Create a user
 export const createAdminSchema = z.object({
     email: z.string({
         required_error: "Liked user details is needed"
@@ -7,5 +8,3 @@ export const createAdminSchema = z.object({
 
     hashedPassword: z.string({required_error: "A valid string value is required"})
 })
-
-export type AdminInput = z.infer<typeof createAdminSchema>;
