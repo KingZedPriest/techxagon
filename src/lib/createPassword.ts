@@ -1,9 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
-import bcrypt from 'bcrypt';
-
-export default async function createPassword(){
-    const plainTextPassword = uuidv4(); // Generate UUID
-    const hashedPassword = await bcrypt.hash(plainTextPassword, 10);
-    
-    return hashedPassword
-}
+const generateSecureCode = () => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let code = '';
+    for (let i = 0; i < 6; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
+};

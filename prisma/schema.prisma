@@ -8,6 +8,16 @@ datasource db {
 }
 
 // Schemas
+
+model VerificationCode {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  code      String
+  expiresAt DateTime
+
+  @@unique([email, code])
+}
+
 model Admin {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   email          String   @unique

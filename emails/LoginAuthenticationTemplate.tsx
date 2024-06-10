@@ -1,24 +1,8 @@
-import {
-    Body,
-    Container,
-    Head,
-    Heading,
-    Hr,
-    Html,
-    Img,
-    Link,
-    Preview,
-    Section,
-    Text,
-  } from "@react-email/components";
+import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from "@react-email/components";
   
   type VerifyEmailProps = {
     verificationCode?: string;
   }
-  
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "";
   
   export default function LoginAuthenticationTemplate({ verificationCode }: VerifyEmailProps) {
     return (
@@ -30,7 +14,7 @@ import {
             <Section style={coverSection}>
               <Section style={imageSection}>
                 <Img
-                  src={`${baseUrl}/static/aws-logo.png`}
+                  src={`https://res.cloudinary.com/dpmx02shl/image/upload/v1718029041/Techxagon/logo_gvqhvc.svg`}
                   width="75"
                   height="45"
                   alt="AWS's Logo"

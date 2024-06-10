@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Techxagon Academy",
-  description: "A school management system built by Charles Chukwuemeka, while having Techxagon Academy Abuja Wuse Zone 11(Force Headquarters) in mind.",
+  description: "A school management system built by Wonder",
 };
 
 export default function RootLayout({
