@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 
+
 // Encrypt a value
 export function encrypt(value: string, secretKey: string): string {
   const iv = crypto.randomBytes(16);
