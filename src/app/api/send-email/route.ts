@@ -1,7 +1,7 @@
 //Templates
 import LoginAuthenticationTemplate from "../../../../emails/LoginAuthenticationTemplate";
 
-//Needed Utils
+//Needed Utils and Lib
 import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
 import { sendEmail } from "@/lib/email";
@@ -40,5 +40,5 @@ export async function POST(request: Request) {
         } else {
           return new NextResponse('Internal Server Error', { status: 500 });
         }
-      }
+    }
 }

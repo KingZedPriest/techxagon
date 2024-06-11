@@ -14,7 +14,7 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
             <Section style={coverSection}>
               <Section style={imageSection}>
                 <Img
-                  src={`https://res.cloudinary.com/dpmx02shl/image/upload/v1718029041/Techxagon/logo_gvqhvc.svg`}
+                  src={`https://res.cloudinary.com/dpmx02shl/image/upload/v1718123660/Techxagon/logo-bgRemoved_wrfhxl.png`}
                   width="75"
                   height="45"
                   alt="Logo"
@@ -32,7 +32,7 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
   
                   <Text style={codeText}>{verificationCode}</Text>
                   <Text style={validityText}>
-                    (This code is valid for 10 minutes)
+                    (This code is valid for 15 minutes)
                   </Text>
                 </Section>
               </Section>
