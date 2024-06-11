@@ -17,7 +17,7 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
                   src={`https://res.cloudinary.com/dpmx02shl/image/upload/v1718029041/Techxagon/logo_gvqhvc.svg`}
                   width="75"
                   height="45"
-                  alt="AWS's Logo"
+                  alt="Logo"
                 />
               </Section>
               <Section style={upperSection}>
@@ -44,11 +44,11 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
               </Section>
             </Section>
             <Text style={footerText}>
-              This message was produced and distributed by Techxagon Services,
-              Inc., 410 Terry Ave. North, Seattle, WA 98109. © 2024, Techxagon
+              This message was produced and distributed by Wonder Services,
+              Inc., Kado Bimko Estate, Gwarimpa, Abuja. © 2024, Wonder Services
               Services, Inc.. All rights reserved. For more information kindly visit our website
               <Link href="" target="_blank" style={link}>
-                Techxagon.com
+                Charleschukwuemeka.com
               </Link>
               or out LinkedIn account {" "}
               <Link href="" target="_blank" style={link}>

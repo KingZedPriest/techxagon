@@ -8,14 +8,17 @@ import { toast } from "sonner";
 //Import Needed Components
 import Input from "@/components/ui/Input";
 
-//Import Needed Types & Utils
+//Import Needed Types & Utils & Store
 import { emailSchema, FormData } from "@/lib/validation";
 import { makeApiRequest } from "@/lib/apiUtils";
+import { useAuthenticationStore } from "@/store/authentication";
 
 //Import Needed Icons
 import { Sms, User } from "iconsax-react";
 
 const Login = () => {
+    //Zustand store
+    const { updateEmail } = useAuthenticationStore()
 
     //Data validation
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
