@@ -1,7 +1,6 @@
 import { prisma } from '@/lib/prismadb';
 import { NextResponse } from "next/server";
 import type { NextRequest } from 'next/server'
-import { redirect } from 'next/navigation'
 
 //Utils, Libraries, and types
 import { generateSecureCode } from '@/lib/generateSecureCode';
@@ -46,7 +45,6 @@ export async function POST(request: NextRequest) {
           html: emailHtml,
         });
 
-        redirect("/verify")
         return NextResponse.json(newVerification)
 
     } catch (error) {

@@ -32,7 +32,7 @@ const Login = () => {
        
         // Update the state
         updateEmail(data.email);
-
+        
         const formData = { ...data, subject: "Verification" };
 
         makeApiRequest("/sendVerification", "post", formData, {
