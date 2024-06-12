@@ -1,12 +1,11 @@
 import { prisma } from '@/lib/prismadb';
-import { NextResponse } from "next/server";
-import type { NextRequest } from 'next/server'
+import { NextResponse, NextRequest } from "next/server";
 
 //Utils, Libraries, and types
 import { generateSecureCode } from '@/lib/generateSecureCode';
 import { sendEmail } from "@/lib/email";
 import { render } from '@react-email/components';
-import { FormData, emailSchema } from '@/lib/validation';
+import { FormData, emailSchema } from '@/schema/auth.schema';
 
 //Templates
 import LoginAuthenticationTemplate from '../../../../emails/LoginAuthenticationTemplate';
@@ -18,8 +17,10 @@ export async function POST(request: NextRequest) {
 
     try {
 
-        if (!emailSchema.parse(body)){
-            return NextResponse.json('Data Validation Error', { status: 400 })
+        try {
+          emailSchema.parse(body);
+        } catch (e) {
+          return new NextResponse('Data Validation Error', { status: 400 });
         }
 
         const { email, subject } = body;

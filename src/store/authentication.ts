@@ -2,12 +2,12 @@ import { create } from 'zustand';
 
 type authenticationStore = {
 
-    email: string | any;
-    updateEmail: (newEmail: string | any) => void;
+    email: string;
+    updateEmail: (newEmail: string) => void;
 }
 
-export const useAuthenticationStore = create<authenticationStore>((set) => ({
+export const useAuthenticationStore = create<authenticationStore>()((set) => ({
 
     email: "",
-    updateEmail: (newEmail: string | any) => set({email : newEmail })
+    updateEmail: (newEmail: string) => set({email : newEmail })
  }))

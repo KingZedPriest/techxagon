@@ -21,7 +21,8 @@ model VerificationCode {
 model Admin {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   email          String   @unique
-  hashedPassword String   
+  hashedPassword String
+  role           String   @default("admin")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
@@ -89,6 +90,7 @@ model Teacher {
   email          String   @unique
   exams          Exam[]
   hashedPassword String
+  role           String   @default("teacher")
   suspended      Boolean  @default(false)
   deleted        Boolean  @default(false)
   school         School?  @relation(fields: [schoolId], references: [id], onDelete: Restrict)

@@ -1,19 +1,19 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 interface ApiRequestOptions extends AxiosRequestConfig {
-  onSuccess?: () => void;
+  onSuccess?: (response: AxiosResponse) => void;
   onError?: (error: any) => void;
 }
 
-export const  makeApiRequest = (
+export const makeApiRequest = (
   endpoint: string,
   method: 'get' | 'post' | 'put' | 'delete',
   data?: any,
   options?: ApiRequestOptions
-) => {
+): Promise<AxiosResponse<any>> => {
   const { onSuccess, onError, ...axiosOptions } = options || {};
 
-  axios({
+  return axios({
     url: `/api${endpoint}`,
     method,
     data,
@@ -21,16 +21,16 @@ export const  makeApiRequest = (
   })
     .then((response) => {
       if (onSuccess) {
-        onSuccess();
-       console.log({response})
+        onSuccess(response);
       }
+      console.log(response)
+      return response;
     })
     .catch((error: any) => {
       if (onError) {
         onError(error);
-        console.log({error})
       }
+      console.log(error)
+      throw error;
     });
 };
-
-

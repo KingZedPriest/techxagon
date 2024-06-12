@@ -1,10 +1,9 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-//Create a user
-export const createAdminSchema = z.object({
-    email: z.string({
-        required_error: "Liked user details is needed"
-    }).email("A valid email is required"),
+export const emailSchema = z.object({
+  email: z.string().min(1, 'Email address is required').email('Invalid email address'),
+  subject: z.string().optional()
+});
 
-    hashedPassword: z.string({required_error: "A valid string value is required"})
-})
+
+export type FormData = z.infer<typeof emailSchema>

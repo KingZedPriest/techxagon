@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import Input from "@/components/ui/Input";
 
 // Import Needed Types & Utils & Store
-import { emailSchema, FormData } from "@/lib/validation";
+import { emailSchema, FormData } from '@/schema/auth.schema';
 import { makeApiRequest } from "@/lib/apiUtils";
 import { useAuthenticationStore } from "@/store/authentication";
 
@@ -23,7 +23,7 @@ const Login = () => {
     const { updateEmail } = useAuthenticationStore();
 
     // Data validation
-    const { register, handleSubmit, watch, reset, formState: { errors, isSubmitting, isSubmitted } } = useForm<FormData>({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting, isSubmitted } } = useForm<FormData>({
         resolver: zodResolver(emailSchema),
     });
 
@@ -31,9 +31,9 @@ const Login = () => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
        
         // Update the state
-        updateEmail(data.email);
-        
-        const formData = { ...data, subject: "Verification" };
+        updateEmail(data.email.toLowerCase());
+
+        const formData = { email: data.email.toLowerCase(), subject: "Verification" };
 
         makeApiRequest("/sendVerification", "post", formData, {
             onSuccess: () => {
