@@ -1,5 +1,7 @@
 import { prisma } from '@/lib/prismadb';
 import { NextResponse } from "next/server";
+import type { NextRequest } from 'next/server'
+import { redirect } from 'next/navigation'
 
 //Utils, Libraries, and types
 import { generateSecureCode } from '@/lib/generateSecureCode';
@@ -11,7 +13,7 @@ import { FormData, emailSchema } from '@/lib/validation';
 import LoginAuthenticationTemplate from '../../../../emails/LoginAuthenticationTemplate';
 
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
 
     const body: FormData = await request.json();
 
@@ -26,11 +28,11 @@ export async function POST(request: Request) {
         //Generate the code
         const code: string = generateSecureCode();
 
-        //Convert the email to a template
+        //Convert the email template
         const emailHtml = render(LoginAuthenticationTemplate({ verificationCode: code }))
 
         // Save the code and email in the database with an expiry date
-        const newVerificationCode = await prisma.verificationCode.create({
+        const newVerification = await prisma.verificationCode.create({
           data: {
             email,
             code,
@@ -38,13 +40,14 @@ export async function POST(request: Request) {
           },
         });
     
-        await sendEmail({
+        sendEmail({
           to : email,
-          subject : subject,
+          subject : subject!,
           html: emailHtml,
         });
 
-        return NextResponse.json(newVerificationCode);
+        redirect("/verify")
+        return NextResponse.json(newVerification)
 
     } catch (error) {
         if (error instanceof Error) {

@@ -15,16 +15,15 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
               <Section style={imageSection}>
                 <Img
                   src={`https://res.cloudinary.com/dpmx02shl/image/upload/v1718123660/Techxagon/logo-bgRemoved_wrfhxl.png`}
-                  width="75"
-                  height="45"
                   alt="Logo"
+                  style={image}
                 />
               </Section>
               <Section style={upperSection}>
                 <Heading style={h1}>Verify your email address</Heading>
                 <Text style={mainText}>
                     At our organization, we prioritize security and user experience. 
-                    To strike the right balance between these two critical aspects, we have implemented this verification code authentication system. 
+                    To strike the right balance between these two critical aspects, we have implemented this verification code authentication system.
                     To log in to your account, please enter the verification code provided below.
                 </Text>
                 <Section style={verificationSection}>
@@ -39,22 +38,12 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
               <Hr />
               <Section style={lowerSection}>
                 <Text style={cautionText}>
-                  If you never requested for this service, kindly contact us, if you think your account has been compromised
+                  If you never requested for this service,  or you think your account has been compromised, kindly contact us.
                 </Text>
               </Section>
             </Section>
             <Text style={footerText}>
-              This message was produced and distributed by Wonder Services,
-              Inc., Kado Bimko Estate, Gwarimpa, Abuja. © 2024, Wonder Services
-              Services, Inc.. All rights reserved. For more information kindly visit our website
-              <Link href="" target="_blank" style={link}>
-                Charleschukwuemeka.com
-              </Link>
-              or out LinkedIn account {" "}
-              <Link href="" target="_blank" style={link}>
-                LinkedIn Account
-              </Link>
-              .
+              This message was produced and distributed by Wonder Services. {" "}
             </Text>
           </Container>
         </Body>
@@ -106,6 +95,13 @@ import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, 
     justifyContent: "center",
   };
   
+  const image = {
+    display: "flex",
+    padding: "20px 0",
+    alignItems: "center",
+    justifyContent: "center",
+  }
+
   const coverSection = { backgroundColor: "#fff" };
   
   const upperSection = { padding: "25px 35px" };
