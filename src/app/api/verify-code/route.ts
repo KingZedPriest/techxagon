@@ -4,9 +4,10 @@ import { cookies } from 'next/headers';
 
 // Import Utils, libraries and types
 import { FormData, verifySchema } from '@/schema/verify.schema';
-import { encrypt } from '@/lib/hashToken';
+import { signToken } from '@/lib/signToken';
 
 export async function POST(request: NextRequest, response: NextResponse) {
+
   const body: FormData = await request.json();
 
   try {
@@ -39,30 +40,34 @@ export async function POST(request: NextRequest, response: NextResponse) {
     if (!admin && !teacher) return new NextResponse("We couldn't find an account associated with the email address you entered.", { status: 403 });
 
     const validatedUser = admin || teacher;
-    const data = encrypt(validatedUser!, process.env.SECRET_KEY!);
+   
+    const data = signToken(validatedUser!);
 
-    if (verificationCode && verificationCode.expiresAt > new Date()) {
-      // Log the user in by setting a session cookie
-      cookies().set({
-        name: 'sessionToken',
-        value: data,
-        httpOnly: true,
-        path: '/',
-        expires: 24 * 60 * 60, // Expires in 24 Hours
-      });
+    // Log the user in by setting a session cookie
+    cookies().set({
+      name: 'sessionToken',
+      value: data,
+      httpOnly: true,
+      path: '/',
+      secure: true,
+      expires: 24 * 60 * 60, // Expires in 24 Hours
+      sameSite: 'strict', 
+    });
 
-      // Delete the code to prevent reuse
-      await prisma.verificationCode.delete({
-        where: { email_code: { email, code } },
-      });
+    // Delete the code to prevent reuse
+    await prisma.verificationCode.delete({
+      where: { email_code: { email, code } },
+    });
 
-      return NextResponse.json(validatedUser);
-    }
+    return NextResponse.json(validatedUser);
+
   } catch (error: any) {
+
     if (error instanceof Error) {
       return new NextResponse(error.message);
     } else {
       return new NextResponse('Internal Server Error', { status: 500 });
     }
+    
   }
 }

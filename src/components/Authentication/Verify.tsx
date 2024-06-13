@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 //Import Needed Actions, Utils and Store
-import { resendVerification } from "@/app/actions/serverActions/resendVerification";
 import { makeApiRequest } from "@/lib/apiUtils";
 import { useAuthenticationStore } from "@/store/authentication";
 
@@ -20,14 +19,46 @@ const Verify = () => {
   const router = useRouter()
   //State for the field 
   const [value, setValue] = useState<string>("")
+  const [isBtnVisible, setIsBtnVisible] = useState<boolean>(false);
+
 
   //Zustand email store
   const { email } = useAuthenticationStore()
 
+  //Handle Resend Verification
+  const handleResendVerification = () => {
+    
+    toast.info("Resending Email")
 
+    //Push the user back to email page
+    if (!email) return router.push("/authentication")
+
+    const formData = { email }
+
+    makeApiRequest("/resendVerification", "post", formData, {
+
+      onSuccess: (response: any) => {
+        // Handle success
+        toast.success("Verification code was resent, kindly check your inbox")
+        setValue("")
+        setIsBtnVisible(false)
+      },
+      onError: (error: any) => {
+        // Handle error
+        toast.error("Unable to send verification, kindly try again later.")
+        router.push("/authentication")
+      },
+    });
+  };
+
+  
+
+  //Submit Function
   const Submit = () => {
 
-    const formData = { code: value, email: "charleschukwuemeka47@gmail.com" }
+    toast.info("Validating entered code")
+
+    const formData = { code: value, email }
 
     makeApiRequest("/verify-code", "post", formData, {
 
@@ -35,11 +66,13 @@ const Verify = () => {
         // Handle success
         toast.success("You were authenticated successfully")
         console.log({response})
-        router.push(response.role)
+        //router.push(response.role)
       },
       onError: (error: any) => {
         // Handle error
-        toast.error(error.response.data)
+        toast.error("Unable to verify your identity, kindly try again later.")
+        setValue("")
+        setIsBtnVisible(true)
       },
     });
   }
@@ -64,8 +97,11 @@ const Verify = () => {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
-              <button onClick={async () => await resendVerification(email) && toast.success("Success, Kindly check your inbox for a code.")} className="text-xs md:text-sm xl:text-base text-green-600 font-semibold mt-10 hover:text-primary duration-300">Resend Email</button>
-            </div>
+              {isBtnVisible &&
+                <button onClick={handleResendVerification} 
+                className="text-xs md:text-sm xl:text-base text-green-600 font-semibold mt-10 hover:text-primary duration-300">Resend Email</button>
+              }
+              </div>
         </main>
      );
 }

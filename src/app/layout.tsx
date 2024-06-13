@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("antialiased", inter.className)}>
         {children}
-        <Toaster richColors position="top-center" closeButton />
+        <Toaster richColors position="top-right" closeButton />
       </body>
     </html>
   );
