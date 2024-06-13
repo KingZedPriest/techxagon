@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp"
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
 import { useRouter } from "next/navigation";
@@ -21,7 +22,6 @@ const Verify = () => {
   const [value, setValue] = useState<string>("")
   const [isBtnVisible, setIsBtnVisible] = useState<boolean>(false);
 
-
   //Zustand email store
   const { email } = useAuthenticationStore()
 
@@ -32,7 +32,6 @@ const Verify = () => {
 
     //Push the user back to email page
     if (!email) return router.push("/authentication")
-
     const formData = { email }
 
     makeApiRequest("/resendVerification", "post", formData, {
@@ -55,9 +54,11 @@ const Verify = () => {
 
   //Submit Function
   const Submit = () => {
+    
+    //Push the user back to email page
+    if (!email) return router.push("/authentication")
 
-    toast.info("Validating entered code")
-
+    toast.info("Validating entered code")  
     const formData = { code: value, email }
 
     makeApiRequest("/verify-code", "post", formData, {
@@ -97,10 +98,14 @@ const Verify = () => {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
-              {isBtnVisible &&
-                <button onClick={handleResendVerification} 
-                className="text-xs md:text-sm xl:text-base text-green-600 font-semibold mt-10 hover:text-primary duration-300">Resend Email</button>
-              }
+              <div className="mt-10 flex items-center justify-between text-xs md:text-sm xl:text-base text-green-600 font-semibold">
+                {isBtnVisible &&
+                  <button onClick={handleResendVerification} 
+                  className="hover:text-primary duration-300">Resend Email</button>
+                }
+                <Link href="/authentication" className="text-red-600 hover:text-primary duration-300">Change Email Address</Link>
+              </div>
+              
               </div>
         </main>
      );
