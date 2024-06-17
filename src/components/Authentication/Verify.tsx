@@ -66,19 +66,19 @@ const Verify = () => {
       onSuccess: (response: any) => {
         // Handle success
         toast.success("You were authenticated successfully")
-        console.log({response})
-        //router.push(response.role)
+        //console.log({response})
+        router.push(`${response.data.role}/dashboard`)
       },
       onError: (error: any) => {
         // Handle error
-        toast.error("Unable to verify your identity, kindly try again later.")
+        toast.error(`${error.response.data}, Please Try Again.`)
         setValue("")
         setIsBtnVisible(true)
       },
     });
   }
     return ( 
-        <main className="min-w-[18rem] max-w-[26rem] flex flex-col items-center justify-center">
+        <main className="min-w-[18rem] max-w-[30rem] flex flex-col items-center justify-center">
             <div className="bg-primary rounded-[50%] size-20 items-center justify-center flex relative z-[2]">
                 <User size={40} className="text-white" />
             </div>
@@ -98,7 +98,7 @@ const Verify = () => {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
-              <div className="mt-10 flex items-center justify-between text-xs md:text-sm xl:text-base text-green-600 font-semibold">
+              <div className="mt-10 flex items-center justify-between text-xs lg:text-sm text-green-600 font-semibold">
                 {isBtnVisible &&
                   <button onClick={handleResendVerification} 
                   className="hover:text-primary duration-300">Resend Email</button>

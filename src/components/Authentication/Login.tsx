@@ -50,7 +50,7 @@ const Login = () => {
     };
 
     return (
-        <div className="min-w-[18rem] max-w-[26rem] flex flex-col items-center justify-center">
+        <div className="min-w-[18rem] max-w-[30rem] flex flex-col items-center justify-center">
             <div className="bg-primary rounded-[50%] size-20 items-center justify-center flex relative z-[2]">
                 <User size={40} className="text-white" />
             </div>
