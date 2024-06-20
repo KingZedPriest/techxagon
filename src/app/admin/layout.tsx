@@ -1,17 +1,25 @@
+//Server Actions
+import { getCurrentUser } from '../actions/serverActions/currentUser';
+
+//Needed Component
+import Header from '@/components/Admin/Header';
 import Sidebar from '@/components/Admin/Sidebar';
-import { Toaster } from 'sonner';
 
-export default async function AdminLayout({children}: {
-  children: React.ReactNode
-}){
-  
-  return (
 
-      <section>
-        <Sidebar />
-            <section className="mainWidth">{children}</section>
-        <Toaster richColors position="top-right" closeButton />
-      </section>
 
-  )
+
+export default async function AdminLayout({ children }: {
+    children: React.ReactNode
+}) {
+    const userDetails = await getCurrentUser()
+    console.log({userDetails})
+    return (
+        <section className='bg-gray-100 h-screen'>
+            <Sidebar />
+            <section className="mainWidth">
+                <Header />
+                {children}
+            </section>
+        </section>
+    )
 }
