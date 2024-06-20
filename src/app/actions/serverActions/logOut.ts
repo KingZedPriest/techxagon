@@ -1,11 +1,15 @@
 'use server'
 
 import { cookies } from 'next/headers'
-import { RedirectType, permanentRedirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 export async function logOut() {
-    
+    // Delete the session token
     cookies().delete('sessionToken')
-    const token = cookies().get('sessionToken')?.value
-    if (!token) return permanentRedirect("/authentication", RedirectType.replace)
+
+    // Redirect to the authentication page
+    redirect('/authentication')
+
+    // This line will never be reached, but it's good practice to return something
+    return { success: true }
 }
