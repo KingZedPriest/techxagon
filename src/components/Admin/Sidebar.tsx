@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+//Import Needed Server Actions
+import { logOut } from "@/app/actions/serverActions/logOut";
+
 //Import Needed Components
 import SidebarLinks from "../ui/SidebarLinks";
 
@@ -28,7 +31,7 @@ const Sidebar = ({role}: {role: string}) => {
                     <SidebarLinks route="/admin/results" label="Results" icon={<Chart1 size={20} variant="Bulk"/>} />
                     <div className="absolute w-[90%] bottom-20 border-t border-sidebarText">
                         <div className="mt-4">
-                            <SidebarLinks route="/user/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
+                            <SidebarLinks route="/admin/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 
                         </div>
                     </div>
                 </div>
