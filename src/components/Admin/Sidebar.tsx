@@ -8,6 +8,7 @@ import logo from "../../../public/images/logo.svg";
 
 //Import Needed Icons
 import { Book1, Category, Chart1, Computing, LogoutCurve, ShieldTick, Teacher } from "iconsax-react";
+import Downbar from "./Downbar";
 
 
 const Sidebar = ({role}: {role: string}) => {
@@ -32,6 +33,7 @@ const Sidebar = ({role}: {role: string}) => {
                     </div>
                 </div>
             </div>
+            <Downbar />
         </main>
      );
 }
