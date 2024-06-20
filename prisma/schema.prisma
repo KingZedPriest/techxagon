@@ -48,7 +48,6 @@ model Student {
   deleted   Boolean         @default(false)
   suspended Boolean         @default(false)
   class     ClassToStudent?
-  exams     Exam[]
   school    School?         @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId  String?         @db.ObjectId
   createdAt DateTime        @default(now())
@@ -114,8 +113,6 @@ model Exam {
   questions     Question[]
   school        School?       @relation(fields: [schoolId], references: [id])
   schoolId      String?       @db.ObjectId
-  student       Student?      @relation(fields: [studentId], references: [id])
-  studentId     String?       @db.ObjectId
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }
