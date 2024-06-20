@@ -5,6 +5,9 @@ import { cookies } from 'next/headers'
 //Import Needed Utils
 import { verifyToken } from '@/lib/signToken';
 
+//Import Needed Types
+import { UserDetails } from '@/types/default';
+
 
 export async function getCurrentUser(){
 
@@ -17,6 +20,6 @@ export async function getCurrentUser(){
     if (!userDetails) return permanentRedirect("/authentication", RedirectType.replace)
 
     //Return user details
-    return userDetails;
+    return userDetails as UserDetails;
 
 }

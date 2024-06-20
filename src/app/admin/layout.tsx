@@ -7,17 +7,16 @@ import Sidebar from '@/components/Admin/Sidebar';
 
 
 
-
 export default async function AdminLayout({ children }: {
     children: React.ReactNode
 }) {
     const userDetails = await getCurrentUser()
-    console.log({userDetails})
+
     return (
         <section className='bg-gray-100 h-screen'>
             <Sidebar />
             <section className="mainWidth">
-                <Header />
+                <Header email= {userDetails.email}/>
                 {children}
             </section>
         </section>
