@@ -8,14 +8,15 @@ export const signToken = (data: object) => {
 };
 
 // Verify token
-export const verifyToken = (token: any) => {
+export const verifyToken = (token: string) => {
+
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY!);
-    return decoded
+    return decoded;
 
   } catch (error) {
-    return null
+    console.error('Token verification failed:', error);
+    return null;
   }
-
-}
+};
 

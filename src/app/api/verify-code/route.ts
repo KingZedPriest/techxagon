@@ -49,9 +49,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
       value: data,
       httpOnly: true,
       path: '/',
-      secure: true,
-      expires: 24 * 60 * 60, // Expires in 24 Hours
-      sameSite: 'strict', 
+      secure: process.env.NODE_ENV === 'production',
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      sameSite: "strict",
     });
 
     // Delete the code to prevent reuse

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,9 +16,8 @@ import { useAuthenticationStore } from "@/store/authentication";
 // Import Needed Icons
 import { Sms, User } from "iconsax-react";
 
-
 const Login = () => {
-    const router = useRouter()
+    const router = useRouter();
     // Zustand store
     const { updateEmail } = useAuthenticationStore();
 
@@ -29,7 +28,6 @@ const Login = () => {
 
     // OnSubmit function
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-       
         // Update the state
         updateEmail(data.email.toLowerCase());
 
@@ -39,15 +37,17 @@ const Login = () => {
             onSuccess: () => {
                 toast.success("Your verification code was sent, kindly check your inbox");
                 reset();
-                router.replace("/verify")
+                router.replace("/verify");
             },
             onError: (error: any) => {
                 toast.error("Sorry, we couldn't send your verification code, kindly try again later");
                 reset();
             },
         });
-
     };
+
+    // Disable the button if there are errors or the form is submitting
+    const disableButton = isSubmitting || isSubmitted || !!errors.email;
 
     return (
         <div className="min-w-[18rem] max-w-[30rem] flex flex-col items-center justify-center">
@@ -69,9 +69,9 @@ const Login = () => {
                 <div className="bg-gray-300 text-primary rounded-[2rem] -mt-10 w-[60%] md:w-4/5 text-center shadow-xl text-xs sm:text-sm xl:text-base">
                     <input
                         type="submit"
-                        value={isSubmitting || isSubmitted ? "Submitting..." : "LOGIN"}
-                        disabled={isSubmitting || isSubmitted}
-                        className="disabled:opacity-50 hover:text-white duration-300 cursor-pointer mt-14 mb-4 font-bold tracking-widest"
+                        value={isSubmitting ? "Submitting..." : "LOGIN"}
+                        disabled={disableButton}
+                        className={`disabled:opacity-50 hover:text-white duration-300 cursor-pointer mt-14 mb-4 font-bold tracking-widest text-center bg-inherit`}
                     />
                 </div>
             </form>
