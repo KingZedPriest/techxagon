@@ -24,6 +24,7 @@ const config = {
     },
     extend: {
       colors: {
+        inkBlue : "#3248f2",
         primaryOrange: "#e25810",
         lightOrange: "#fbefde",
         darkRed: "#581704",
