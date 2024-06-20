@@ -26,6 +26,9 @@ const config = {
       colors: {
         inkBlue : "#3248f2",
         primaryOrange: "#e25810",
+        sidebarBackground: "#111315",
+        sidebarBackgroundHover: "#414244",
+        sidebarText:"#b4b5b7",
         lightOrange: "#fbefde",
         darkRed: "#581704",
         border: "hsl(var(--border))",
