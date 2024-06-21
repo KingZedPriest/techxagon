@@ -13,6 +13,7 @@ const Input = <T extends FieldValues>({
   widthClass = 'w-full',
   register,
   name,
+  otherClass,
   required,
 }: InputProps<T>) => {
   return (
@@ -29,7 +30,7 @@ const Input = <T extends FieldValues>({
         onChange={onChange}
         pattern={pattern}
         title={title}
-        className={`bg-lightOrange px-2 xl:px-4 py-3 border duration-500 focus:border-primary focus:outline-none ${widthClass}`}
+        className={`bg-lightOrange px-2 xl:px-4 py-3 border duration-500 focus:border-primary focus:outline-none ${widthClass} ${otherClass}`}
         required={required}
       />
     </main>

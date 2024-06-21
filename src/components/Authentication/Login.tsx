@@ -61,7 +61,7 @@ const Login = () => {
                             <Sms className="text-5xl md:text-7xl xl:text-9xl" color="#FFF" />
                         </div>
                         <div className="flex flex-col mb-14">
-                            <Input type="email" placeholder="Enter your email address" id="email" name="email" register={register} required />
+                            <Input type="email" placeholder="Enter your email address" id="email" name="email" register={register} required={true} />
                             {errors.email && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.email.message}</p>}
                         </div>
                     </div>

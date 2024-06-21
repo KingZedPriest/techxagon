@@ -14,6 +14,7 @@ export type InputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
   name: Path<T>;
   required?: boolean;
+  otherClass?: string;
 }
 
 //For the logged in user details

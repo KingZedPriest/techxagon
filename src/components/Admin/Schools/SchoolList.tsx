@@ -3,7 +3,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 const SchoolList = () => {
     return (
         <main className="text-xs md:text-sm xl:text-base">
-            <input type="search" name="school" id="school" placeholder="Enter the name of the school" className="w-full py-3 rounded-xl px-4 bg-inherit border border-slate-300 focus:outline-none focus:border-inkBlue" />
+            <input type="search" name="school" id="school" placeholder="Enter the name of the school" className="w-full py-3 rounded-xl px-4 bg-inherit border border-slate-300 focus:border-4 focus:outline-none focus:border-inkBlue focus:border-opacity-50" />
             <Table className="mt-10">
                 <TableCaption className="uppercase text-xs md:text-sm xl:text-base">List of schools.</TableCaption>
                 <TableHeader>
