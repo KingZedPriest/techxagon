@@ -23,6 +23,7 @@ const SchoolList = () => {
         makeApiRequest("/getSchools", "get", "", {
             onSuccess: (response: any) => {
                 // Handle success
+                toast.success("Schools Fetched Successfully")
                 setSchools(response.data.data)
                 setTotalPages(Math.ceil(response.data.total / 10));
             },
