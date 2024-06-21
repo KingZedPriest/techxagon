@@ -5,7 +5,7 @@ export type InputProps<T extends FieldValues> = {
   type: string;
   placeholder?: string;
   label?: string;
-  id: string;
+  id?: string;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   pattern?: string;

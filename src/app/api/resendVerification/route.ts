@@ -10,7 +10,7 @@ import { generateSecureCode } from '@/lib/generateSecureCode';
 
 export async function POST(req: NextRequest, res: NextResponse) {
 
-    const body= await req.json();
+    const body = await req.json();
 
     try {
         
