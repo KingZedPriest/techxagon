@@ -9,9 +9,10 @@ import { useRouter } from 'next/navigation';
 import Input from '@/components/ui/Input';
 import SchoolSelect from '@/components/Admin/Teachers/SchoolSelect';
 
-//Import Needed Utils and types
+//Import Needed Utils, stores and types
 import { makeApiRequest } from '@/lib/apiUtils';
 import { teacherSchema, FormData } from '@/schema/teacher.schema';
+import { useTeacherStore } from '@/store/teacher';
 
 //Import Needed Icons
 import { Back } from 'iconsax-react';
@@ -20,6 +21,7 @@ import { Back } from 'iconsax-react';
 
 
 const Page = () => {
+    const { schoolId } = useTeacherStore()
     const router = useRouter();
 
     // Data validation
@@ -30,7 +32,8 @@ const Page = () => {
     // OnSubmit function
     const onSubmit: SubmitHandler<FormData> = async (data) => {
 
-        const formData = {...data};
+        const formData = {...data, schoolId };
+        console.log({formData})
 
         makeApiRequest("/registerSchool", "post", formData, {
             onSuccess: () => {
