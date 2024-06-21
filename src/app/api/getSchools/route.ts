@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prismadb';
 
-export async function GET(req: NextRequest) {
-    const { searchParams } = new URL(req.url);
+export async function GET(request: NextRequest) {
+    const { searchParams } = new URL(request.url);
+    console.log(`This is the search params ${searchParams}`)
     const page: number = parseInt(searchParams.get('page') || '1', 10);
     const limit: number = parseInt(searchParams.get('limit') || '10', 10);
     const search: string = searchParams.get('search') || '';
@@ -19,6 +20,11 @@ export async function GET(req: NextRequest) {
                         mode: 'insensitive',
                     },
                 },
+                include: {
+                    teachers:true,
+                    students: true
+                },
+
                 skip,
                 take: limit,
             });
@@ -39,6 +45,12 @@ export async function GET(req: NextRequest) {
             orderBy: {
                 createdAt: "desc"
             },
+
+            include: {
+                teachers:true,
+                students: true
+            },
+
             skip,
             take: limit,
         });

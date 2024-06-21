@@ -32,3 +32,14 @@ export type UserDetails = {
   updatedAt: string;
   iat: number;
 }
+
+//For the school
+export type School = {
+  id: string;
+  name: string;
+  schoolLogo?: string;
+  location?: string;
+  motto?: string;
+  teachers?: any[],
+  students?: any[]
+}
