@@ -1,5 +1,3 @@
-
-
 type Summary = {
     icon: React.ReactNode,
     color: string,
