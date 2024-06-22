@@ -42,7 +42,7 @@ const SchoolSelect = () => {
         id="schoolSelect"
         value={selectedId}
         onChange={handleChange}
-        className="block w-full px-2 xl:px-4 py-3 rounded-xl focus:border-inkBlue border bg-inherit focus:outline-none capitalize"
+        className="w-full px-2 xl:px-4 py-3 rounded-xl focus:border-inkBlue border bg-inherit focus:outline-none capitalize"
       >
         <option value="">Select a school</option>
         {schools.map((school) => (

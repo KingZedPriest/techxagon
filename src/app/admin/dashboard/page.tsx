@@ -12,7 +12,7 @@ import Summary from "@/components/Admin/Dasboard/Summary";
 //Import Needed Icons
 import { Book, Computing, LampCharge, Teacher } from "iconsax-react";
 
-
+export const revalidate = 0
 const page = async () => {
 
     const schools = await getSchools()

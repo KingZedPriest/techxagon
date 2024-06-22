@@ -11,7 +11,7 @@ import SummaryBox from "@/components/Teachers/Dashboard/SummaryBox";
 //Import Needed Icons
 import { KeyboardOpen, Profile2User, Teacher, UserTick } from "iconsax-react";
 
-
+export const revalidate = 0
 const page = async () => {
 
     const userDetails = await getCurrentUser()
