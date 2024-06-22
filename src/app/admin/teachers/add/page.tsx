@@ -34,7 +34,7 @@ const AddTeacher = () => {
             
         toast.info("Registering a teacher...")
         const formData = {...data, schoolId };
-        console.log({formData})
+        //console.log({formData})
 
         makeApiRequest("/registerTeacher", "post", formData, {
             onSuccess: () => {
