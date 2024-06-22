@@ -24,10 +24,10 @@ const page = async () => {
         <main className="py-10 p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10">
             <CreateNew />
             <div className="flex flex-wrap items-center gap-4 mt-10">
-                <Summary icon={<Book size={24} className="text-white"/>} color="#fc5959" amount={schools.length} text="Number of Schools"/>
-                <Summary icon={<Teacher size={24} className="text-white"/>} color="#fc9b24" amount={teachers.length} text="Number of Teachers"/>
-                <Summary icon={<Computing size={24} className="text-white"/>} color="#34d173" amount={exams.length} text="Number of Exams"/>
-                <Summary icon={<LampCharge size={24} className="text-white"/>} color="#3248f2" amount={questions.length} text="Number of Questions"/>
+                <Summary icon={<Book size={24} className="text-white"/>} color="bg-[#fc5959]" amount={schools.length} text="Number of Schools"/>
+                <Summary icon={<Teacher size={24} className="text-white"/>} color="bg-[#fc9b24]" amount={teachers.length} text="Number of Teachers"/>
+                <Summary icon={<Computing size={24} className="text-white"/>} color="bg-[#34d173]" amount={exams.length} text="Number of Exams"/>
+                <Summary icon={<LampCharge size={24} className="text-white"/>} color="bg-[#3248f2]" amount={questions.length} text="Number of Questions"/>
             </div>
         </main>
      );

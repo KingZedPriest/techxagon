@@ -1,14 +1,15 @@
 import { Body, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from "@react-email/components";
 
 type InviteEmailProps = {
-  password?: string;
+  password: string;
+  name: string;
 }
 
-export default function TeacherInvitationTemplate({ password }: InviteEmailProps) {
+export default function TeacherInvitationTemplate({ password, name }: InviteEmailProps) {
   return (
     <Html>
       <Head />
-      <Preview>Welcome</Preview>
+      <Preview>Welcome {name}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={coverSection}>
@@ -22,7 +23,7 @@ export default function TeacherInvitationTemplate({ password }: InviteEmailProps
               />
             </Section>
             <Section style={upperSection}>
-              <Heading style={h1}>Welcome</Heading>
+              <Heading style={h1}>Welcome {name}</Heading>
               <Text style={mainText}>
                 Welcome to our tutoring management platform. Your account has been successfully created by the administrator.
                 We invite you to log in and set up your tutor profile. Once logged in, you can:</Text>
@@ -37,7 +38,7 @@ export default function TeacherInvitationTemplate({ password }: InviteEmailProps
                 <Text style={verifyText}>Default Password</Text>
                 <Text style={codeText}>{password}</Text>
                 <Text style={validityText}>
-                  (Kindly Login and change this password, NOTE: This password will be demanded for during account issues)
+                  (Kindly Login and change this password, NOTE: This password will be demanded for during account recover)
                 </Text>
               </Section>
             </Section>

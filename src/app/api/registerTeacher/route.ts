@@ -32,7 +32,7 @@ export async function POST(req: NextRequest, res: NextResponse){
             },
         });
 
-        const emailHtml = render(TeacherInvitationTemplate({ password: hashedPassword }))
+        const emailHtml = render(TeacherInvitationTemplate({ password: hashedPassword, name: lowerCasedName }))
 
         sendEmail({
             to : lowerCasedEmail,

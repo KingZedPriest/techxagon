@@ -33,7 +33,7 @@ export type UserDetails = {
   iat: number;
 }
 
-//For the school
+//For the Schools
 export type School = {
   id: string;
   name: string;
@@ -42,4 +42,18 @@ export type School = {
   motto?: string;
   teachers?: any[],
   students?: any[]
+}
+
+//For the Teachers
+export type Teacher = {
+  id: string;
+  name: string;
+  email: string;
+  exams?: any[];
+  hashedPassword: string;
+  role: string;
+  suspended: boolean;
+  deleted: boolean;
+  school?: any;
+  schoolId?: string;
 }
