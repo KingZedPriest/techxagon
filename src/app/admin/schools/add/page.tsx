@@ -1,4 +1,5 @@
 "use client"
+
 import Link from 'next/link';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,8 +29,9 @@ const Page = () => {
     // OnSubmit function
     const onSubmit: SubmitHandler<FormData> = async (data) => {
 
+        toast.info("Registering Teacher....")
         const formData = {...data};
-        console.log({formData})
+        //console.log({formData})
 
         makeApiRequest("/registerSchool", "post", formData, {
             onSuccess: () => {
@@ -43,18 +45,20 @@ const Page = () => {
             },
         });
     };
+    
     return (
         <main className="fixed h-screen w-full bg-black bg-opacity-80 flex items-center justify-center z-[700] top-0 left-0">
-            <div className="relative w-[90%] sm:w-[70%] md:w-[50%] xl:w-[40%] bg-white p-4 md:p-8 rounded-xl">
+            <div className="relative w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] bg-white p-4 md:p-8 rounded-xl">
                 <p className='text-base sm:text-lg md:text-xl xl:text-2xl font-medium'>Add a School</p>
+
                 <form className='mt-4 flex flex-col gap-y-5 text-xs md:text-sm xl:text-base' onSubmit={handleSubmit(onSubmit)} noValidate>
                     <Input name="name" register={register} type="text" placeholder="Eg: Police Secondary School Abuja" label='Name of School' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.name && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.name.message}</p>}
 
-                    <Input name="location" register={register} type="text" placeholder="Eg: Wuse zone11 " label='Location' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="location" register={register} type="text" placeholder="Eg: Wuse zone11" label='Location' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.location && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.location.message}</p>}
 
-                    <Input name="motto" register={register} type="text" placeholder="Eg: We set the pace " label='Motto' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="motto" register={register} type="text" placeholder="Eg: We set the pace" label='Motto' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.motto && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.motto.message}</p>}
                     <input
                         type="submit"

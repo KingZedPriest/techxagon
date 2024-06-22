@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prismadb';
 
 export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
-    console.log(`This is the search params ${searchParams}`)
+    
     const page: number = parseInt(searchParams.get('page') || '1', 10);
     const limit: number = parseInt(searchParams.get('limit') || '10', 10);
     const search: string = searchParams.get('search') || '';

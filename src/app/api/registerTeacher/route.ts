@@ -13,19 +13,20 @@ import TeacherInvitationTemplate from '../../../../emails/TeacherInvitationTempl
 
 
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest, res: NextResponse){
     const body: FormData = await req.json();
 
     try {
         const { name, email, hashedPassword, schoolId } = body;
 
         const lowerCasedName = name.toLowerCase()
+        const lowerCasedEmail = email.toLowerCase()
         const newHashedPassword = await bcrypt.hash(hashedPassword!, 12);
 
         const newTeacher = await prisma.teacher.create({
             data: {
                 name: lowerCasedName,
-                email,
+                email: lowerCasedEmail,
                 hashedPassword: newHashedPassword!,
                 schoolId,
             },
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const emailHtml = render(TeacherInvitationTemplate({ password: hashedPassword }))
 
         sendEmail({
-            to : email,
+            to : lowerCasedEmail,
             subject : "Invitation",
             html: emailHtml,
           });

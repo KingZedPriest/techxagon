@@ -132,7 +132,7 @@ const verifyText = {
 const codeText = {
   ...text,
   fontWeight: "bold",
-  fontSize: "36px",
+  fontSize: "24px",
   margin: "10px 0",
   textAlign: "center" as const,
 };

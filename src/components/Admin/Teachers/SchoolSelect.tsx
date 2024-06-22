@@ -1,4 +1,5 @@
 "use client"
+
 import { useState, useEffect, ChangeEvent } from 'react';
 import { toast } from 'sonner';
 import { useTeacherStore } from '@/store/teacher';
@@ -31,6 +32,7 @@ const SchoolSelect = () => {
     const selectedValue = event.target.value;
     setSelectedId(selectedValue);
     updateSchoolId(selectedValue);
+    //console.log(selectedValue)
   };
 
   return (
@@ -40,7 +42,7 @@ const SchoolSelect = () => {
         id="schoolSelect"
         value={selectedId}
         onChange={handleChange}
-        className="block w-full px-2 xl:px-4 py-3 rounded-xl focus:border-inkBlue border bg-inherit shadow-sm focus:outline-none"
+        className="block w-full px-2 xl:px-4 py-3 rounded-xl focus:border-inkBlue border bg-inherit focus:outline-none capitalize"
       >
         <option value="">Select a school</option>
         {schools.map((school) => (
