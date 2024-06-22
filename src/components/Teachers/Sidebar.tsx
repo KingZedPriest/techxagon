@@ -7,7 +7,7 @@ import SidebarLinks from "../ui/SidebarLinks";
 import logo from "../../../public/images/logo.svg";
 
 //Import Needed Icons
-import { Book1, Category, Chart1, Computing, LogoutCurve, ShieldTick, Teacher } from "iconsax-react";
+import { Home3, Profile2User, LogoutCurve, ProfileTick, Rank, ShieldTick } from "iconsax-react";
 import Downbar from "./Downbar";
 
 
@@ -21,11 +21,10 @@ const Sidebar = ({role}: {role: string}) => {
                     <ShieldTick size="28" className="text-white" variant="Bulk"/>
                 </div>
                 <div className="mt-10 flex flex-col gap-y-5">
-                    <SidebarLinks route="/admin/dashboard" label="Dashboard" icon={<Category size={20} variant="Bulk"/>} />
-                    <SidebarLinks route="/admin/schools" label="Schools" icon={<Book1 size={20} variant="Bulk"/>} />
-                    <SidebarLinks route="/admin/teachers" label="Teachers" icon={<Teacher size={20} variant="Bulk"/>} />
-                    <SidebarLinks route="/admin/exams" label="Exams" icon={<Computing size={20} variant="Bulk"/>} />
-                    <SidebarLinks route="/admin/results" label="Results" icon={<Chart1 size={20} variant="Bulk"/>} />
+                    <SidebarLinks route="/teacher/dashboard" label="Dashboard" icon={<Home3 size={20} variant="Bulk"/>} />
+                    <SidebarLinks route="/teacher/classes" label="Classes" icon={<Profile2User size={20} variant="Bulk"/>} />
+                    <SidebarLinks route="/teacher/evaluation" label="Evaluation" icon={<Rank size={20} variant="Bulk"/>} />
+                    <SidebarLinks route="/teacher/attendance" label="Attendance" icon={<ProfileTick size={20} variant="Bulk"/>} />
                     <div className="absolute w-[90%] bottom-20 border-t border-sidebarText">
                         <div className="mt-4">
                             <SidebarLinks route="/admin/logout" label="Log Out" icon={<LogoutCurve size={20}/>}/> 

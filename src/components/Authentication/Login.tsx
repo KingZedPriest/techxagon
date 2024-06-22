@@ -28,6 +28,8 @@ const Login = () => {
 
     // OnSubmit function
     const onSubmit: SubmitHandler<FormData> = async (data) => {
+
+        toast.info("Sending verification code...")
         // Update the state
         updateEmail(data.email.toLowerCase());
 
