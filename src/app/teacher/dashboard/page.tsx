@@ -18,8 +18,6 @@ const page = async () => {
     const teacher = await getATeacher(userDetails.id)
     const school = await getASchool(teacher?.school?.id!)
 
-    console.log({school})
-
     return ( 
         <main className="py-10 p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10">
             <Search />
