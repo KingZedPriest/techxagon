@@ -1,7 +1,6 @@
 //Import Needed Actions
 import getASchool from "@/app/actions/fetchActions/getASchool";
 import getATeacher from "@/app/actions/fetchActions/getATeacher";
-import getAllStudents from "@/app/actions/fetchActions/getAllStudents";
 import { getCurrentUser } from "@/app/actions/serverActions/currentUser";
 
 //Import Needed Components

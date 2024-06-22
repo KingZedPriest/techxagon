@@ -62,9 +62,8 @@ model Class {
   name      AvailableClasses @unique
   School    School?          @relation(fields: [schoolId], references: [id])
   schoolId  String?          @db.ObjectId
-  Student   Student[]
-  Exam      Exam?            @relation(fields: [examId], references: [id])
-  examId    String?          @db.ObjectId
+  students  Student[]
+  exams     Exam[]
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
 }
@@ -94,12 +93,13 @@ model Exam {
   noOfQuestions Int
   score         Int
   isTaken       Boolean    @default(false)
-  classes       Class[]
-  teacher       Teacher?    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacher       Teacher?   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   teacherId     String?    @db.ObjectId
   questions     Question[]
   school        School?    @relation(fields: [schoolId], references: [id])
   schoolId      String?    @db.ObjectId
+  Class         Class?     @relation(fields: [classId], references: [id])
+  classId       String?    @db.ObjectId
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
 }

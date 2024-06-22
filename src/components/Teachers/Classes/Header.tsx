@@ -13,7 +13,7 @@ import { VALUES, formSchema, FormData } from "@/schema/class.schema";
 import { CloseSquare } from "iconsax-react";
 
 
-const Header = () => {
+const Header = ({schoolId}: {schoolId : string}) => {
 
     const [seen, setSeen] = useState<boolean>(false)
 
@@ -31,20 +31,19 @@ const Header = () => {
 
         setSeen(false)
         toast.info("Creating class....")
-        const formData = { ...data };
-        console.log('Form Data:', data);
+        const formData = { name: data.class, schoolId };
 
-        // makeApiRequest("/registerSchool", "post", formData, {
-        //     onSuccess: () => {
-        //         toast.success(`${data.class} was added to the class list.`);
-        //         reset();
-        //         window.location.reload();
-        //     },
-        //     onError: (error: any) => {
-        //         toast.error(error.response.data);
-        //         reset();
-        //     },
-        // });
+        makeApiRequest("/addClass", "post", formData, {
+            onSuccess: () => {
+                toast.success(`${data.class} was added to the class list.`);
+                reset();
+                window.location.reload();
+            },
+            onError: (error: any) => {
+                toast.error(error.response.data);
+                reset();
+            },
+        });
     };
 
     return (
