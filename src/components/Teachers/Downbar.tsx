@@ -27,7 +27,7 @@ const Downbar = () => {
                 </Link>  
                 <Link href="/teacher/attendance" className={`${pathName === "/teacher/attendance" ? "text-white -translate-y-2 duration-300" : ""} text-xs flex flex-col gap-y-2 w-1/5 items-center cursor-pointer hover:text-white duration-300`}>
                     <ProfileTick size={20} variant="Bulk"/>
-                    Exams
+                    Attendance
                </Link>  
             </div>
         </main>
