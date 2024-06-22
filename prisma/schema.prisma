@@ -60,13 +60,13 @@ model Student {
 model Class {
   id        String           @id @default(auto()) @map("_id") @db.ObjectId
   name      AvailableClasses @unique
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
   School    School?          @relation(fields: [schoolId], references: [id])
   schoolId  String?          @db.ObjectId
   Student   Student[]
   Exam      Exam?            @relation(fields: [examId], references: [id])
   examId    String?          @db.ObjectId
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
 }
 
 // Teacher model

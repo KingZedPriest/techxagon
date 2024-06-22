@@ -6,6 +6,11 @@ export default async function getASchool(id: string) {
     const getASchool = await prisma.school.findUnique({
       where: {
         id
+      },
+      include: {
+        students: true,
+        classes: true,
+        exams: true
       }
     });
 
