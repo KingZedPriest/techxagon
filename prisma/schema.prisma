@@ -36,50 +36,37 @@ model School {
   teachers   Teacher[]
   students   Student[]
   exams      Exam[]
+  classes    Class[]
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
 
 model Student {
-  id        String          @id @default(auto()) @map("_id") @db.ObjectId
-  email     String?         @unique
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String?  @unique
   name      String
-  regNumber String          @unique
-  deleted   Boolean         @default(false)
-  suspended Boolean         @default(false)
-  class     ClassToStudent?
-  school    School?         @relation(fields: [schoolId], references: [id], onDelete: Cascade)
-  schoolId  String?         @db.ObjectId
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
+  regNumber String   @unique
+  deleted   Boolean  @default(false)
+  suspended Boolean  @default(false)
+  class     Class    @relation(fields: [classId], references: [id])
+  school    School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  schoolId  String?  @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  classId   String   @db.ObjectId
 }
 
 // Class model
 model Class {
   id        String           @id @default(auto()) @map("_id") @db.ObjectId
   name      AvailableClasses @unique
-  students  ClassToStudent[]
-  exams     ClassToExam[]
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
-}
-
-// Junction table between Student and Class
-model ClassToStudent {
-  id         String           @id @default(auto()) @map("_id") @db.ObjectId
-  student    Student          @relation(fields: [studentReg], references: [regNumber], onDelete: Cascade)
-  studentReg String           @unique
-  class      Class            @relation(fields: [className], references: [name], onDelete: Cascade)
-  className  AvailableClasses
-}
-
-// Junction table between Class and Exam
-model ClassToExam {
-  id        String           @id @default(auto()) @map("_id") @db.ObjectId
-  class     Class            @relation(fields: [className], references: [name], onDelete: Cascade)
-  className AvailableClasses
-  exam      Exam             @relation(fields: [examId], references: [examId], onDelete: Cascade)
-  examId    String
+  School    School?          @relation(fields: [schoolId], references: [id])
+  schoolId  String?          @db.ObjectId
+  Student   Student[]
+  Exam      Exam?            @relation(fields: [examId], references: [id])
+  examId    String?          @db.ObjectId
 }
 
 // Teacher model
@@ -100,21 +87,21 @@ model Teacher {
 
 // Exam model
 model Exam {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   title         String
-  examId        String        @unique
+  examId        String     @unique
   duration      Int
   noOfQuestions Int
   score         Int
-  isTaken       Boolean       @default(false)
-  classes       ClassToExam[]
-  teacher       Teacher       @relation(fields: [teacherEmail], references: [email], onDelete: Cascade)
-  teacherEmail  String
+  isTaken       Boolean    @default(false)
+  classes       Class[]
+  teacher       Teacher?    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  teacherId     String?    @db.ObjectId
   questions     Question[]
-  school        School?       @relation(fields: [schoolId], references: [id])
-  schoolId      String?       @db.ObjectId
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  school        School?    @relation(fields: [schoolId], references: [id])
+  schoolId      String?    @db.ObjectId
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 }
 
 // Question model
@@ -123,8 +110,8 @@ model Question {
   question      String
   options       String[]
   correctOption String
-  exam          Exam?    @relation(fields: [examId], references: [examId], onDelete: Cascade)
-  examId        String?
+  exam          Exam?    @relation(fields: [examId], references: [id], onDelete: Cascade)
+  examId        String?  @db.ObjectId
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

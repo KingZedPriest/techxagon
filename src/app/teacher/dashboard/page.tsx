@@ -1,5 +1,7 @@
 //Import Needed Actions
+import getASchool from "@/app/actions/fetchActions/getASchool";
 import getATeacher from "@/app/actions/fetchActions/getATeacher";
+import getAllStudents from "@/app/actions/fetchActions/getAllStudents";
 import { getCurrentUser } from "@/app/actions/serverActions/currentUser";
 
 //Import Needed Components
@@ -14,6 +16,9 @@ const page = async () => {
 
     const userDetails = await getCurrentUser()
     const teacher = await getATeacher(userDetails.id)
+    const school = await getASchool(teacher?.school?.id!)
+
+    console.log({school})
 
     return ( 
         <main className="py-10 p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10">
