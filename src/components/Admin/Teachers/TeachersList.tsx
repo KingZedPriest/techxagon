@@ -30,7 +30,11 @@ const TeachersList = () => {
             },
             onError: (error: any) => {
                 // Handle error
-                toast.error(`${error.response.data || 'Error fetching teachers'}, Please Try Again.`);
+                if(error.response.data.error){
+                    toast.error(`${error.response.data.error}, Please Try Again.`)
+                } else (
+                 toast.error(`${error.response.data || 'Error fetching classes'}, Please Try Again.`) 
+                )
             },
         });
     }, [search, page]);
@@ -38,7 +42,10 @@ const TeachersList = () => {
     return (
         <main className="text-xs md:text-sm xl:text-base">
             <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} name="school" id="school" placeholder="Enter the name of the school" className="w-full py-3 rounded-xl px-4 bg-inherit border border-slate-300 focus:border-4 focus:outline-none focus:border-inkBlue focus:border-opacity-50" />
+            
+            {teachers.length === 0 && <p className='text-red-600 text-center my-4'>No teacher was found, kindly check the name and try again.</p>}
             <TeachersTable teachers={teachers}/>
+
            <div className="flex justify-between mt-10">
                 <button onClick={() => setPage(page - 1)} disabled={page === 1} className="disabled:cursor-not-allowed text-primary cursor-pointer">
                   Previous

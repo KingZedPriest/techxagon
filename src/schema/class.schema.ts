@@ -9,7 +9,7 @@ export const VALUES = [
   "SS3A", "SS3B", "SS3C", "SS3D", "SS3E"
 ] as const;
 
-const ClassEnums = z.enum(VALUES);
+export const ClassEnums = z.enum(VALUES);
 
 export const formSchema = z.object({
   class: ClassEnums

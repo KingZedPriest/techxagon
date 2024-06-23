@@ -40,8 +40,12 @@ export type School = {
   schoolLogo?: string;
   location?: string;
   motto?: string;
-  teachers?: any[],
-  students?: any[]
+  teachers?: any[];
+  students?: any[];
+  exams?: any[];
+  classes?: any[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 //For the Teachers
@@ -54,6 +58,34 @@ export type Teacher = {
   role: string;
   suspended: boolean;
   deleted: boolean;
-  school?: any;
+  school?: object;
   schoolId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type Class = {
+  id: string;
+  name: string;
+  school?: object;
+  schoolId: string;
+  students?: Student[];
+  exams?: any[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type Student = {
+  id: string;
+  email: string;
+  name: string;
+  regNumber: string;
+  deleted: boolean;
+  suspended: boolean;
+  class?: object;
+  classId?: string;
+  school?: object;
+  schoolId?: string;
+  createdAt: string;
+  updatedAt: string;
 }

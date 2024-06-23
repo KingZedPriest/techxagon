@@ -2,29 +2,28 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-//Import Needed Utils and Types
-import { School } from "@/types/default";
+// Import Needed Utils and Types
+import { Class } from "@/types/default";
 import { makeApiRequest } from "@/lib/apiUtils";
 
-//Import Needed Components
-import SchoolsTable from "./Schools";
+// Import Needed Components
+import ClassTable from "./ClassTable";
 
 
+const ClassList = ({ id }: { id: string }) => {
 
-const SchoolList = () => {
-
-    const [schools, setSchools] = useState<School[]>([]);
+    const [classes, setClasses] = useState<Class[]>([]);
     const [search, setSearch] = useState<string>('');
     const [page, setPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(0);
 
     useEffect(() => {
-        toast.info("Fetching Schools...")
-        makeApiRequest(`/getSchools/?page=${page}&limit=10&search=${search}`, "get", "", {
+        toast.info("Fetching Classes...");
+        makeApiRequest(`/getClasses?id=${id}&page=${page}&limit=10&search=${search}`, "get", "", {
             onSuccess: (response: any) => {
                 // Handle success
-                toast.success("Schools Fetched Successfully")
-                setSchools(response.data.data)
+                toast.success("Classes Fetched Successfully");
+                setClasses(response.data.data);
                 setTotalPages(Math.ceil(response.data.total / 10));
             },
             onError: (error: any) => {
@@ -36,15 +35,16 @@ const SchoolList = () => {
                 )
             },
         });
-    }, [search, page]);
+    }, [id, search, page]);
 
     return (
         <main className="text-xs md:text-sm xl:text-base">
-            <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} name="school" id="school" placeholder="Enter the name of the school" className="w-full py-3 rounded-xl px-4 bg-inherit border border-slate-300 focus:border-4 focus:outline-none focus:border-inkBlue focus:border-opacity-50" />
-
-            {schools.length === 0 && <p className='text-red-600 text-center my-4'>No school was found, kindly add a school.</p>}
-           <SchoolsTable schools={schools}/>
+            <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} name="class" id="class" placeholder="Enter the name of the class" className="w-full py-3 rounded-xl px-4 bg-inherit border border-slate-300 focus:border-4 focus:outline-none focus:border-inkBlue focus:border-opacity-50" />
            
+           {classes.length === 0 && <p className='text-red-600 text-center my-4'>No class or classes were found, kindly add a class.</p>}
+
+           <ClassTable classes={classes}/>
+
            <div className="flex justify-between mt-10">
                 <button onClick={() => setPage(page - 1)} disabled={page === 1} className="disabled:cursor-not-allowed text-primary cursor-pointer">
                   Previous
@@ -58,4 +58,4 @@ const SchoolList = () => {
     );
 }
 
-export default SchoolList;
+export default ClassList;
