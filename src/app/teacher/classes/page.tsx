@@ -17,7 +17,7 @@ const page = async () => {
         <main className="py-10 p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10">
             <Header schoolId={teacher?.school?.id!} />
             <div className="mt-10">
-                <ClassList id={teacher?.school?.id!} />
+                <ClassList id={teacher?.school?.id!} schoolName={`${teacher?.school?.name!} ${teacher?.school?.location!}`}/>
             </div>
         </main>
      );

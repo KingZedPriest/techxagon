@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 
-const ClassTable = ({ classes }: { classes: any[] }) => {
+const ClassTable = ({ classes, schoolName }: { classes: any[], schoolName: string }) => {
 
   return (
     <Table className="mt-10">
-      <TableCaption className="uppercase text-xs md:text-sm xl:text-base">Class List</TableCaption>
+      <TableCaption className="uppercase text-xs md:text-sm xl:text-base">Class List of {schoolName}</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="font-semibold text-inkBlue uppercase text-xs md:text-sm xl:text-base">Class Name</TableHead>

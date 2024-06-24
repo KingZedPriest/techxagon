@@ -37,7 +37,6 @@ const Header = ({ schoolId }: {schoolId : string}) => {
             onSuccess: () => {
                 toast.success(`${data.class} was added to the class list.`);
                 reset();
-                window.location.reload();
             },
             onError: (error: any) => {
                 toast.error(error.response.data);

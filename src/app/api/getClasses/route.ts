@@ -60,9 +60,6 @@ export async function GET(request: NextRequest) {
             where: {
                 schoolId: id,
             },
-            orderBy: {
-                createdAt: "desc"
-            },
             include: {
                 students: true,
                 exams: true 
