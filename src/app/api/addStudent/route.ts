@@ -20,7 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             },
           });
 
-        if (existingRegNumber) return new NextResponse('This Reg Number already exists in this school', { status: 409 })
+        if (existingRegNumber) return new NextResponse('A student with the entered Reg Number already exist in this school', { status: 409 })
         
         //Create a class then
         const newStudent = await prisma.student.create({

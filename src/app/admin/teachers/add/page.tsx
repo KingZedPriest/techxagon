@@ -55,13 +55,13 @@ const AddTeacher = () => {
                 <p className='text-base sm:text-lg md:text-xl xl:text-2xl font-medium'>Add a Teacher</p>
 
                 <form className='mt-4 flex flex-col gap-y-5 text-xs md:text-sm xl:text-base' onSubmit={handleSubmit(onSubmit)} noValidate>
-                    <Input name="name" register={register} type="text" placeholder="Eg: John Doe" label="Teacher's Name" required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="name" id='name' register={register} type="text" placeholder="Eg: John Doe" label="Teacher's Name" required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.name && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.name.message}</p>}
 
-                    <Input name="email" register={register} type="email" placeholder="Eg: Johndoe@gmail.com" label='Email Address' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="email" id='email' register={register} type="email" placeholder="Eg: Johndoe@gmail.com" label='Email Address' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.email && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.email.message}</p>}
 
-                    <Input name="hashedPassword" register={register} type="text" placeholder="Eg: Password" label='Default Password' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="hashedPassword" id='hashedPassword' register={register} type="text" placeholder="Eg: Password" label='Default Password' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.hashedPassword && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.hashedPassword.message}</p>}
 
                     <SchoolSelect />

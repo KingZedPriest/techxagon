@@ -43,7 +43,7 @@ model School {
 
 model Student {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String?  @unique
+  email     String?
   name      String
   regNumber String   @unique
   deleted   Boolean  @default(false)

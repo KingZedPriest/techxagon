@@ -52,14 +52,15 @@ const Page = () => {
                 <p className='text-base sm:text-lg md:text-xl xl:text-2xl font-medium'>Add a School</p>
 
                 <form className='mt-4 flex flex-col gap-y-5 text-xs md:text-sm xl:text-base' onSubmit={handleSubmit(onSubmit)} noValidate>
-                    <Input name="name" register={register} type="text" placeholder="Eg: Police Secondary School Abuja" label='Name of School' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="name" id='name' register={register} type="text" placeholder="Eg: Police Secondary School Abuja" label='Name of School' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.name && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.name.message}</p>}
 
-                    <Input name="location" register={register} type="text" placeholder="Eg: Wuse zone11" label='Location' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="location" id='location' register={register} type="text" placeholder="Eg: Wuse zone11" label='Location' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.location && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.location.message}</p>}
 
-                    <Input name="motto" register={register} type="text" placeholder="Eg: We set the pace" label='Motto' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
+                    <Input name="motto" id='motto' register={register} type="text" placeholder="Eg: We set the pace" label='Motto' required={true} otherClass='bg-white rounded-xl focus:border-inkBlue' />
                     {errors.motto && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.motto.message}</p>}
+                    
                     <input
                         type="submit"
                         value={isSubmitting ? "Registering..." : "Register"}
