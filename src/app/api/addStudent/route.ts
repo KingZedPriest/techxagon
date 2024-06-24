@@ -22,12 +22,15 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
         if (existingRegNumber) return new NextResponse('A student with the entered Reg Number already exist in this school', { status: 409 })
         
+        const lowercaseName = name.toLowerCase()
+        const lowercaseRegNumber = regNumber.toLowerCase()
+        
         //Create a class then
         const newStudent = await prisma.student.create({
             data: {
                 email,
-                name,
-                regNumber,
+                name: lowercaseName,
+                regNumber: lowercaseRegNumber,
                 gender,
                 classId,
                 schoolId,
