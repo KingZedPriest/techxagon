@@ -13,7 +13,7 @@ import { VALUES, formSchema, FormData } from "@/schema/class.schema";
 import { CloseSquare } from "iconsax-react";
 
 
-const Header = ({schoolId}: {schoolId : string}) => {
+const Header = ({ schoolId }: {schoolId : string}) => {
 
     const [seen, setSeen] = useState<boolean>(false)
 
