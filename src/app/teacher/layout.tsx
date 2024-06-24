@@ -13,11 +13,13 @@ export default async function AdminLayout({ children }: {
     const userDetails = await getCurrentUser()
 
     return (
-        <section className='bg-gray-100 h-screen'>
+        <section>
             <Sidebar role={userDetails.role}/>
             <section className="mainWidth">
                 <Header email= {userDetails.email}/>
-                {children}
+                <div className='bg-gray-100 min-h-screen'>
+                    {children}
+                </div>
             </section>
         </section>
     )
