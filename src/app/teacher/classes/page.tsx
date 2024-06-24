@@ -9,7 +9,7 @@ import Header from "@/components/Teachers/Classes/Header";
 
 export const revalidate = 0
 const page = async () => {
-    await new Promise(resolve => setTimeout(resolve, 8000));
+    
     const userDetails = await getCurrentUser()
     const teacher = await getATeacher(userDetails.id)
 

@@ -25,7 +25,7 @@ const AddTeacher = () => {
     const router = useRouter();
 
     // Data validation
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting, isSubmitted } } = useForm<FormData>({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting, isValid } } = useForm<FormData>({
         resolver: zodResolver(teacherSchema),
     });
 
@@ -69,8 +69,8 @@ const AddTeacher = () => {
                     <input
                         type="submit"
                         value={isSubmitting ? "Adding..." : "Add Teacher"}
-                        disabled={isSubmitting || isSubmitted}
-                        className={`disabled:opacity-50 py-3 mt-6 rounded-xl text-white duration-300 cursor-pointer font-medium text-center border border-inkBlue bg-inkBlue hover:bg-inherit hover:text-inkBlue`}
+                        disabled={isValid && isSubmitting}
+                        className={`disabled:bg-opacity-50 py-3 mt-6 rounded-xl text-white duration-300 cursor-pointer font-medium text-center border border-inkBlue bg-inkBlue hover:bg-inherit hover:text-inkBlue`}
                     />
                 </form>
                 <Link href="/admin/teachers" className='flex gap-x-1 items-center group mt-10'>

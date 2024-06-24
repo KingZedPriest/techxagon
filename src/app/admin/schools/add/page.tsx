@@ -22,7 +22,7 @@ const Page = () => {
     const router = useRouter();
 
     // Data validation
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting, isSubmitted } } = useForm<FormData>({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting, isValid } } = useForm<FormData>({
         resolver: zodResolver(schoolSchema),
     });
 
@@ -64,7 +64,7 @@ const Page = () => {
                     <input
                         type="submit"
                         value={isSubmitting ? "Registering..." : "Register"}
-                        disabled={isSubmitting || isSubmitted}
+                        disabled={isValid && isSubmitting}
                         className={`disabled:opacity-50 py-3 mt-6 rounded-xl text-white duration-300 cursor-pointer font-medium text-center border border-inkBlue bg-inkBlue hover:bg-inherit hover:text-inkBlue`}
                     />
                 </form>

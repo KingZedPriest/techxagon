@@ -36,7 +36,7 @@ const ClassList = ({ id }: { id: string }) => {
             },
         });
     }, [id, search, page]);
-
+    console.log(classes)
     return (
         <main className="text-xs md:text-sm xl:text-base">
             <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} name="class" id="class" placeholder="Enter the name of the class" className="w-full py-3 rounded-xl px-4 bg-inherit border border-slate-300 focus:border-4 focus:outline-none focus:border-inkBlue focus:border-opacity-50" />

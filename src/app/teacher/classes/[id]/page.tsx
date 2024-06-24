@@ -3,6 +3,9 @@ import Link from "next/link";
 //Import Needed Actions
 import getAClass from "@/app/actions/fetchActions/getAClass";
 
+//Import Needed Components
+import StudentListTable from "@/components/Teachers/Classes/StudentListTable";
+
 export const revalidate = 0;
 const page = async ({ params }: { params: { id: string } }) => {
   
@@ -15,6 +18,9 @@ const page = async ({ params }: { params: { id: string } }) => {
                 <p className="text-base sm:text-lg md:text-xl xl:text2xl font-semibold">{classDetails?.name} Student List</p>
                 <Link className="bg-inkBlue text-white rounded-xl px-4 py-3 border border-inkBlue hover:bg-inherit hover:text-inkBlue duration-300" 
                 href={`/teacher/classes/student?classId=${classDetails?.id}&schoolId=${classDetails?.schoolId}`}>Add Student</Link>
+            </div>
+            <div>
+                <StudentListTable students={classDetails?.students!} className={classDetails?.name!}/>
             </div>
         </main>
     )
