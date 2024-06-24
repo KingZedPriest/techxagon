@@ -49,8 +49,8 @@ model Student {
   deleted   Boolean  @default(false)
   suspended Boolean  @default(false)
   gender    Gender
-  class     Class    @relation(fields: [classId], references: [id])
-  classId   String   @db.ObjectId
+  class     Class?    @relation(fields: [classId], references: [id])
+  classId   String?  @db.ObjectId
   school    School?  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
   schoolId  String?  @db.ObjectId
   createdAt DateTime @default(now())

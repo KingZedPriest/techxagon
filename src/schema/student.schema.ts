@@ -11,6 +11,8 @@ export const studentSchema = z.object({
   email: z.string().email('Invalid email address').optional(),
   regNumber: z.string().min(1, "A unique Reg Number is needed"),
   gender: GenderEnums,
+  classId: z.string().optional(),
+  schoolId: z.string().optional(),
 });
 
 

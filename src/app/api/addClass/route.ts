@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const { name, schoolId } = body;
 
         //Check if class exists, and throw error
-        const existingClass = await prisma.class.findUnique({
+        const existingClass = await prisma.class.findFirst({
             where: {
               name,
               schoolId
