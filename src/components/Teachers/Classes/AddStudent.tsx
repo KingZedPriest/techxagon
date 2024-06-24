@@ -62,10 +62,10 @@ const AddStudent = () => {
                     {errors.regNumber && <p className="mt-1 text-red-600 text-xs lg:text-sm text-center">{errors.regNumber.message}</p>}
 
                     <div className='flex flex-col gap-y-1'>
-                        <label className="cursor-pointer" htmlFor="gender"></label>
+                        <label className="cursor-pointer" htmlFor="gender">Student&apos;s Gender</label>
                         <div>
                             <select id='gender' {...register('gender')} className="w-full px-2 xl:px-4 py-3 rounded-xl focus:border-inkBlue border bg-inherit focus:outline-none capitalize">
-                                <option value="">Student's gender</option>
+                                <option value="">Student&apos;s gender</option>
                                 <option key="male" value="male">Male</option>
                                 <option key="female" value="female">Female</option>
                             </select>

@@ -1,7 +1,7 @@
 import { Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 
 const StudentListTable = ({ students, className }: { students: any[], className: string }) => {
-  console.log(students)
+
   return (
     <Table className="mt-10">
       <TableCaption className="uppercase text-xs md:text-sm xl:text-base">List of students in {className}.</TableCaption>
@@ -19,7 +19,7 @@ const StudentListTable = ({ students, className }: { students: any[], className:
             <TableCell className="text-xs md:text-sm xl:text-base capitalize">{student.name}</TableCell>
             <TableCell className="text-xs md:text-sm xl:text-base">{student.regNumber}</TableCell>
             <TableCell className="text-xs md:text-sm xl:text-base capitalize">{student.gender}</TableCell>
-            <TableCell className="text-xs md:text-sm xl:text-base capitalize">"Unavailable"</TableCell>
+            <TableCell className="text-xs md:text-sm xl:text-base capitalize">Unavailable</TableCell>
           </TableRow>
         ))}
       </TableBody>
